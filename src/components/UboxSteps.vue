@@ -6,8 +6,26 @@ const props = defineProps<{ contents: string[]; active: number }>()
 <template>
   <div class="ubox-steps">
     <template v-for="(item, index) in props.contents">
-      <div class="ubox-steps-dot-container">
+      <div class="ubox-steps-dot-container" >
         <template v-if="index < active">
+          <div class="ubox-steps-dot-img" :data-title="item" style="color: #3b3b3b">
+            <img
+              src="../assets/images/icon_progress.png"
+              class="ubox-steps-dot-img"
+            />
+          </div>
+        </template>
+        <template v-else-if="index == active">
+          <div class="ubox-steps-dot-img" :data-title="item" style="color: #ff7500;">
+            <div class="ubox-steps-dot" style="background: #ff7500"></div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="ubox-steps-dot-img" :data-title="item" style="color: #d2d2d2">
+            <div class="ubox-steps-dot" style="background: #d2d2d2"></div>
+          </div>
+        </template>
+        <!-- <template v-if="index < active">
           <img
             src="../assets/images/icon_progress.png"
             class="ubox-steps-dot-img"
@@ -43,7 +61,7 @@ const props = defineProps<{ contents: string[]; active: number }>()
               {{ item }}
             </UboxH14>
           </div>
-        </template>
+        </template> -->
       </div>
       <div
         class="ubox-step-line"
@@ -95,5 +113,17 @@ const props = defineProps<{ contents: string[]; active: number }>()
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.ubox-steps-dot-img::after {
+  position: absolute;
+  top: 25px;
+  left: -35px;
+  content: attr(data-title);
+  font-size: 12px;
+  min-width: 90px;
+  text-align: center;
+  color:attr(data-color);
+  font-weight: 500;
 }
 </style>

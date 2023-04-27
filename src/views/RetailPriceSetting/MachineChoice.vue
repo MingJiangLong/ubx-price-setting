@@ -63,7 +63,7 @@ async function onNextStepClick() {
       if (tempt?.head?.code != 200) return showToast(tempt?.head?.desc)
       let arr = tempt?.body
       machines = Array.isArray(arr) ? arr.map(item => `${item.vmCode}`) : []
-      if(!machines.length) return showToast('该线路下没有机器!')
+      if(!machines.length) return showToast('所选线路下没有机器!')
     } else {
       machines = retailForm.machineCheckedId
     }

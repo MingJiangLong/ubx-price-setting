@@ -116,7 +116,7 @@ function onUpdatePriceConfirm(item) {
     !!(+priceValue % 0.5) &&
     !isFromAdviceRetailPrice
   )
-    return showToast("首选机器存在纸硬币器，商品价格需为0.5的倍数")
+    return showToast("所选机器存在纸硬币器，商品价格需为0.5的倍数")
 
   if (isFromAdviceRetailPrice) {
     let find = adviceRetailForm.productInfoList.find(v => v.id == item.id)

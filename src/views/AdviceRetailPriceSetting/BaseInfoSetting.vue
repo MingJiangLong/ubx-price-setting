@@ -15,6 +15,10 @@ const commonDate = useCommonData()
 const router = useRouter()
 const showDatePicker = ref(false)
 const showCompanyPicker = ref(false)
+
+/**
+ * 下一步
+ */
 function onNextStepClick() {
   if (!adviceRetailPriceForm.orgId.length) return showToast("请选择分公司")
   if (!adviceRetailPriceForm.effectiveMonthStr.length)
@@ -25,10 +29,19 @@ function onNextStepClick() {
   router.push("/advice-retail-price/price-setting")
 }
 
+/**
+ * 日期选择回调
+ * @param param0 
+ */
 function onPickDate({ selectedValues }) {
   adviceRetailPriceForm.updateEffectiveMonth(selectedValues)
   showDatePicker.value = false
 }
+
+/**
+ * 分公司选择回调
+ * @param param0 
+ */
 function onCompanyPick({ selectedValues }) {
   if (selectedValues?.length) {
     adviceRetailPriceForm.updateOrg4Ids(selectedValues[0])
@@ -36,7 +49,11 @@ function onCompanyPick({ selectedValues }) {
   showCompanyPicker.value = false
 }
 onMounted(() => {
-  commonDate.updateUserInfo(getLoginName(),getEid())
+  const date = new Date()
+  onPickDate({
+    selectedValues: [date.getFullYear(), date.getMonth() + 1],
+  })
+  commonDate.updateUserInfo(getLoginName(), getEid())
   commonDate.fetchCompanyTree()
 })
 
@@ -46,7 +63,6 @@ const contents = ["基础信息", "配置建议零售价"]
 <template>
   <PageContainer>
     <template #default>
-      <!-- <TimePicker /> -->
       <Card>
         <UboxSteps :contents="contents" :active="0" />
       </Card>
@@ -60,13 +76,6 @@ const contents = ["基础信息", "配置建议零售价"]
           v-model="adviceRetailPriceForm.orgIdName"
         ></Field>
         <Popup :show="showCompanyPicker" position="bottom">
-          <!-- <Cascader
-            v-model="adviceRetailPriceForm.org4Ids"
-            title="请选择所在地区"
-            :options="commonDate.companyTree"
-            @close="showCompanyPicker = false"
-            @finish="showCompanyPicker = false"
-          /> -->
           <Picker
             :columns="commonDate.companyTree"
             @cancel="showCompanyPicker = false"
@@ -97,7 +106,6 @@ const contents = ["基础信息", "配置建议零售价"]
           required
           v-model="adviceRetailPriceForm.remark"
         >
-          <!-- <template #input> </template> -->
         </Field>
       </Card>
     </template>

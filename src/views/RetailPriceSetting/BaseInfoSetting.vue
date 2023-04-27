@@ -122,4 +122,7 @@ onMounted(() => {
 .bs-tip {
   margin: 15px 16px;
 }
+:deep(.van-radio){
+  padding: 4px 0;
+}
 </style>

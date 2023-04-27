@@ -41,8 +41,6 @@ const data = {
     }
   },
   actions: {
-    updateSearchValueOfGoods(value) {
-    },
     /**
      * 查询账号权限
      * @returns 
@@ -105,12 +103,22 @@ const data = {
         showToast(error?.message)
       }
     },
+
+    /**
+     * 查询商品
+     * @returns 
+     */
     async fetchGoodsBySearchValue() {
       if (this.searchValueOfGoods == '') return this.goods = []
       let result = await IVMService.searchGoodsByIDOrName(this.searchValueOfGoods)
       if (result?.code != 200) return showToast(result?.msg)
       this.goods = result.data.list ?? []
     },
+    /**
+     * 更新用户信息
+     * @param userName 
+     * @param eid 
+     */
     updateUserInfo(userName: string, eid: string) {
       this.account = userName
       this.eid = eid
