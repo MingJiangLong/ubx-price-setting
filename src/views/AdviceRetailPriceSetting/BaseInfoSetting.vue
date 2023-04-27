@@ -9,6 +9,7 @@ import { ref } from "vue"
 import { onMounted } from "vue"
 import useCommonData from "@/store/modules/useCommonData"
 import useAdviceRetailPriceForm from "@/store/modules/useAdviceRetailPriceForm"
+import { getEid, getLoginName } from "@/util"
 const adviceRetailPriceForm = useAdviceRetailPriceForm()
 const commonDate = useCommonData()
 const router = useRouter()
@@ -35,11 +36,11 @@ function onCompanyPick({ selectedValues }) {
   showCompanyPicker.value = false
 }
 onMounted(() => {
+  commonDate.updateUserInfo(getLoginName(),getEid())
   commonDate.fetchCompanyTree()
 })
 
 const contents = ["基础信息", "配置建议零售价"]
-const active = 0
 </script>
 <!-- 建议零售价配置-基础信息配置 -->
 <template>

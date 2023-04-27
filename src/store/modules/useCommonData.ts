@@ -21,16 +21,18 @@ const data = {
       machines: [],
       access: {},
       companyTree: [],
-      submitter: "qingshimign"
+      submitter: "qingshimign",
+      account: "",
+      eid: ''
     }
   },
   getters: {
-    account() {
-      return getLoginName()
-    },
-    eid() {
-      return getEid()
-    },
+    // account() {
+    //   return getLoginName()
+    // },
+    // eid() {
+    //   return getEid()
+    // },
     filteredLines() {
       return this.lines.filter(item => `${item.lineName ?? ''}`.indexOf(this.searchValueOfLine) != -1)
     },
@@ -55,7 +57,7 @@ const data = {
         let list = [];
         function format(params: Tree) {
           if (!params) return;
-          if (params.level == 3 && params.orgName) {
+          if (params.level == 3 && params.orgName && params.orgName != 'null') {
             list.push({
               text: params.orgName,
               value: `${params.orgId};${params.orgName}`
@@ -88,6 +90,7 @@ const data = {
         const isMachineOrLineDisplay = useRetailPriceForm().isMachineOrLineDisplay;
         if (isMachineOrLineDisplay == '1') {
           if (this.lines.length) return;
+
           let result = await EscortService.fetchLineList(this.account)
           if (result?.head?.code != 200 || !Array.isArray(result?.body)) return;
           this.lines = result.body;
@@ -108,8 +111,9 @@ const data = {
       if (result?.code != 200) return showToast(result?.msg)
       this.goods = result.data.list ?? []
     },
-    updateUserInfo(info) {
-
+    updateUserInfo(userName: string, eid: string) {
+      this.account = userName
+      this.eid = eid
     }
 
   }

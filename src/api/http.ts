@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import a, { AxiosRequestConfig } from 'axios';
 import hostConfig from './hostConfig';
-axios.defaults.timeout = 6000;
+const axios = a.create({ timeout: 6000 })
 axios.defaults.baseURL = '/'
 axios.interceptors.request.use(config => {
   // 生产环境

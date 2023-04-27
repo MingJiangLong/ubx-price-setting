@@ -74,7 +74,8 @@ export function getEid() {
  * 获取登录账号
  */
 export function getLoginName() {
-  return getPathParams()['loginName'] || 'heting'
+  let result = getPathParams();
+  return result['loginName'] || 'heting'
 }
 
 /**
@@ -84,4 +85,12 @@ export function getLoginName() {
  */
 export function calcGrossMargin(v1, v2) {
   return ~~((v2 - v1) / v1 * 100)
+}
+
+/**
+ * 是否为该项目的合法字符串
+ * @param params 
+ */
+export function isValidStr(params: string) {
+  
 }

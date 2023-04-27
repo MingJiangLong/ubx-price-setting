@@ -8,13 +8,14 @@ import Card from "@/components/Card.vue"
 import Button from "@/components/Button.vue"
 import Tips from "@/components/Tips.vue"
 
-import { ref } from "vue"
+import { onMounted } from "vue"
 import UboxH18 from "@/components/UboxH18.vue"
 import UboxH16 from "@/components/UboxH16.vue"
+import useCommonData from "@/store/modules/useCommonData"
+import { getEid, getLoginName } from "@/util"
 const router = useRouter()
-const checked = ref(1)
 const retailForm = useRetailPriceForm()
-
+const commonData = useCommonData()
 /**
  * 下一步点击事件
  */
@@ -23,6 +24,9 @@ function onNextStepClick() {
   if (retailForm.name.length > 20) return showToast("调价单名称长度不超过20")
   router.push("/retail-price/machine-choice")
 }
+onMounted(() => {
+  commonData.updateUserInfo(getLoginName(), getEid())
+})
 </script>
 <!-- 零售价配置-基础信息配置 -->
 <template>
