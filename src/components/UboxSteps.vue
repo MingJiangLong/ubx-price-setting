@@ -80,7 +80,7 @@ const props = defineProps<{ contents: string[]; active: number }>()
   display: flex;
   flex-direction: row;
   height: 40px;
-  padding: 2px 3.4%;
+  padding: 2px 30px;
 }
 .ubox-steps-dot-container {
   min-width: 60px;
@@ -90,9 +90,10 @@ const props = defineProps<{ contents: string[]; active: number }>()
   align-items: center;
 }
 .ubox-steps-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  transform: scale(8);
 }
 
 .ubox-step-line {

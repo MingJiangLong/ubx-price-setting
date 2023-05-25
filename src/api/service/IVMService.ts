@@ -24,12 +24,15 @@ async function getToken() {
 }
 
 async function post<R, D>(url: string, data?: D, config?: AxiosRequestConfig) {
-  const token = await getToken()
+  let token = 'test_token'
+  if (import.meta.env.MODE == 'prod') {
+    token = await getToken()
+  }
   return p<R>('IVM', url, data, {
     ...config,
     headers: {
       ...config.headers,
-      Authorization: import.meta.env.MODE == 'prod' ? token : 'test_token'
+      Authorization: token
     }
   })
 }

@@ -76,12 +76,16 @@ async function onSubmitBtnClick() {
               <Row class="desc-space">
                 <UboxH14 color="#737373"
                   >成本价:
-                  <UboxH16 color="#3b3b3b" :weight="500">
+                  <UboxH16
+                    color="#3b3b3b"
+                    :weight="500"
+                    :style="{ paddingRight: '1em' }"
+                  >
                     ¥ {{ item.costPrice }}
                   </UboxH16>
                 </UboxH14>
                 <UboxH14 color="#737373"
-                  >&nbsp&nbsp&nbsp&nbsp建议零售价:
+                  >建议零售价:
                   <UboxH16 color="#3b3b3b" :weight="500">
                     ¥ {{ item.retailPrice }}
                   </UboxH16>
