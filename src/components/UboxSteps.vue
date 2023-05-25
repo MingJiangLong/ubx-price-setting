@@ -25,43 +25,6 @@ const props = defineProps<{ contents: string[]; active: number }>()
             <div class="ubox-steps-dot" style="background: #d2d2d2"></div>
           </div>
         </template>
-        <!-- <template v-if="index < active">
-          <img
-            src="../assets/images/icon_progress.png"
-            class="ubox-steps-dot-img"
-          />
-          <div class="ubox-steps-font" style="color: #111; padding-top: 10px">
-            <UboxH14 color="#3b3b3b">
-              {{ item }}
-            </UboxH14>
-          </div>
-        </template>
-        <template v-else-if="active == index">
-          <div class="ubox-steps-dot-img">
-            <div class="ubox-steps-dot" style="background: #ff7500"></div>
-          </div>
-          <div
-            class="ubox-steps-font"
-            style="color: #ff7500; padding-top: 10px"
-          >
-            <UboxH14 color="#ff7500">
-              {{ item }}
-            </UboxH14>
-          </div>
-        </template>
-        <template v-else>
-          <div class="ubox-steps-dot-img">
-            <div class="ubox-steps-dot" style="background: #d2d2d2"></div>
-          </div>
-          <div
-            class="ubox-steps-font"
-            style="color: #d2d2d2; padding-top: 10px"
-          >
-            <UboxH14>
-              {{ item }}
-            </UboxH14>
-          </div>
-        </template> -->
       </div>
       <div
         class="ubox-step-line"
@@ -80,7 +43,7 @@ const props = defineProps<{ contents: string[]; active: number }>()
   display: flex;
   flex-direction: row;
   height: 40px;
-  padding: 2px 30px;
+  padding: 2px 10px;
 }
 .ubox-steps-dot-container {
   min-width: 60px;
