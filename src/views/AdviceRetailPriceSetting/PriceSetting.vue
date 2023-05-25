@@ -40,7 +40,9 @@ function deleteAddedGoods(id) {
   <PageContainer>
     <template #default>
       <!-- <TimePicker /> -->
-      <Card>
+      <Card :containerStyle="{
+        padding:'1em 3.4em 1em 2.5em'
+      }">
         <UboxSteps :contents="contents" :active="1" />
       </Card>
       <Card>

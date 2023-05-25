@@ -31,7 +31,7 @@ function onNextStepClick() {
 
 /**
  * 日期选择回调
- * @param param0 
+ * @param param0
  */
 function onPickDate({ selectedValues }) {
   adviceRetailPriceForm.updateEffectiveMonth(selectedValues)
@@ -40,7 +40,7 @@ function onPickDate({ selectedValues }) {
 
 /**
  * 分公司选择回调
- * @param param0 
+ * @param param0
  */
 function onCompanyPick({ selectedValues }) {
   if (selectedValues?.length) {
@@ -50,8 +50,10 @@ function onCompanyPick({ selectedValues }) {
 }
 onMounted(() => {
   const date = new Date()
+  let month = `${date.getMonth() + 1}`
+  month = month.length < 2 ? `0${month}` : month
   onPickDate({
-    selectedValues: [date.getFullYear(), date.getMonth() + 1],
+    selectedValues: [date.getFullYear(), month],
   })
   commonDate.updateUserInfo(getLoginName(), getEid())
   commonDate.fetchCompanyTree()
@@ -63,7 +65,11 @@ const contents = ["基础信息", "配置建议零售价"]
 <template>
   <PageContainer>
     <template #default>
-      <Card>
+      <Card
+        :containerStyle="{
+          padding: '1em 3.4em 1em 2.5em',
+        }"
+      >
         <UboxSteps :contents="contents" :active="0" />
       </Card>
       <Card>

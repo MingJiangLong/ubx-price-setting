@@ -30,7 +30,7 @@ export default {
     /**
      * ACL 权限系统
      */
-    ACL: "https://ubox-acl.dev.uboxol.com/",
+    ACL: "https://ubox-acl.uboxol.com/",
 
     /**
      * 零售价系统

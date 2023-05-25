@@ -319,6 +319,7 @@ onMounted(() => {
 .price-adjust-modal-input {
   border: none;
   height: 35px;
+  color: black;
 }
 .pam-input-container {
   border: 1px solid #dedede;

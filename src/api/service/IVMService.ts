@@ -1,16 +1,37 @@
 import { AxiosRequestConfig } from 'axios'
 import { get as g } from '../http'
 import { post as p } from '../http'
-import { BEResponse } from '../modules'
-import useRetailPriceForm from '@/store/modules/useRetailPriceForm'
-import { AESSign } from '@/util'
 // const useRea
 function get<R = any, P = any>(url: string, params?: P, config?: AxiosRequestConfig) {
   return g<R>('IVM', url, params, config)
 }
 
-function post<R, D>(url: string, data?: D, config?: AxiosRequestConfig) {
-  return p<R>('IVM', url, data, config)
+/**
+ * 获取token
+ * @returns 
+ */
+async function getToken() {
+  if (typeof window.uboxClient.getToken != 'function') return Promise.reject(new Error('获取token失败'))
+  return new Promise<string>((s, e) => {
+    try {
+      window.uboxClient.getToken((token) => {
+        s(token)
+      })
+    } catch (error) {
+      e(error)
+    }
+  })
+}
+
+async function post<R, D>(url: string, data?: D, config?: AxiosRequestConfig) {
+  const token = await getToken()
+  return p<R>('IVM', url, data, {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: import.meta.env.MODE == 'prod' ? token : 'test_token'
+    }
+  })
 }
 export default {
 
@@ -22,7 +43,7 @@ export default {
   isSupportPaperCoin(machineCodes: string[]) {
     return post<{ is_support: boolean }, any>("/api/vm/readyMoneySupport", {
       inner_codes: machineCodes
-    },{
+    }, {
       headers: {
         "x-requested-with": "XMLHttpRequest"
       }

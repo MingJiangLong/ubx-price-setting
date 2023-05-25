@@ -1,6 +1,5 @@
 import RetailPriceService from '@/api/service/RetailPriceService'
 import { defineStore } from 'pinia'
-import useCommonData from './useCommonData'
 
 const data = {
   state() {
