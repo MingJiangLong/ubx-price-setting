@@ -65,13 +65,11 @@ const contents = ["基础信息", "配置建议零售价"]
 <template>
   <PageContainer>
     <template #default>
-      <Card
-        :containerStyle="{
-          padding: '1em 3.4em 1em 2.5em',
-        }"
+      <div
+        class="card-container-special"
       >
         <UboxSteps :contents="contents" :active="0" />
-      </Card>
+      </div>
       <Card>
         <Field
           label="分公司"
