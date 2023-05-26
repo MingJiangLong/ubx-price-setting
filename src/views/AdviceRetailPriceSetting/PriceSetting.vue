@@ -34,17 +34,14 @@ function goSearchPage() {
 function deleteAddedGoods(id) {
   adviceRetailForm.removeGoods(id)
 }
-
 </script>
 <template>
   <PageContainer>
     <template #default>
       <!-- <TimePicker /> -->
-      <Card :containerStyle="{
-        padding:'1em 3.4em 1em 2.5em'
-      }">
+      <div class="card-container-special">
         <UboxSteps :contents="contents" :active="1" />
-      </Card>
+      </div>
       <Card>
         <Search
           placeholder="请输入商品ID或者商品名称搜索"
