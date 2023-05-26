@@ -96,7 +96,7 @@ function onUpdateBtnClick() {
                 <UboxH14 color="#737373"
                   >价格:
                   <UboxH16 color="#3b3b3b" :weight="500">
-                    {{ item.price }}
+                    ¥ {{ item.price }}
                   </UboxH16>
                 </UboxH14>
               </Row>
