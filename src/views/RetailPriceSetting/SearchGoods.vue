@@ -169,48 +169,30 @@ onMounted(() => {
             </Row>
           </Col>
         </Row>
-        <Row
-          align="center"
-          class="pam-input-container"
-          v-if="!isFromAdviceRetailPrice"
-        >
-          <Col span="2" style="text-align: center">¥</Col>
-          <Col span="22">
-            <input
-              class="price-adjust-modal-input"
-              v-model="price"
-              placeholder="请填写调整价格"
-            />
-          </Col>
-        </Row>
-        <Row
-          align="center"
-          class="pam-input-container"
-          v-if="isFromAdviceRetailPrice"
-        >
-          <Col span="2" style="text-align: center">¥</Col>
-          <Col span="22">
-            <input
-              class="price-adjust-modal-input"
-              v-model="basePrice"
-              placeholder="请填写成本价"
-            />
-          </Col>
-        </Row>
-        <Row
-          align="center"
-          class="pam-input-container"
-          v-if="isFromAdviceRetailPrice"
-        >
-          <Col span="2" style="text-align: center">¥</Col>
-          <Col span="22">
-            <input
-              class="price-adjust-modal-input"
-              v-model="adviceRetailPrice"
-              placeholder="请填写建议零售价"
-            />
-          </Col>
-        </Row>
+        <div class="pam-input-container" v-if="!isFromAdviceRetailPrice">
+          <span>¥</span>
+          <input
+            class="price-adjust-modal-input"
+            v-model="price"
+            placeholder="请填写调整价格"
+          />
+        </div>
+        <div class="pam-input-container" v-if="isFromAdviceRetailPrice">
+          <span>¥</span>
+          <input
+            class="price-adjust-modal-input"
+            v-model="basePrice"
+            placeholder="请填写成本价"
+          />
+        </div>
+        <div class="pam-input-container" v-if="isFromAdviceRetailPrice">
+          <span>¥</span>
+          <input
+            class="price-adjust-modal-input"
+            v-model="adviceRetailPrice"
+            placeholder="请填写建议零售价"
+          />
+        </div>
         <Row gutter="20" class="popup-footer">
           <Col span="12">
             <Button
@@ -298,7 +280,7 @@ onMounted(() => {
 }
 
 .price-adjust-modal {
-  width: calc(0.8 * 100vw);
+  width: calc(0.81 * 100vw);
   min-height: calc(0.3 * 100vh);
   background: #ffffff;
   border-radius: 10px;
@@ -317,17 +299,30 @@ onMounted(() => {
   // border-radius: 10px;
 }
 .price-adjust-modal-input {
+  width: 0;
+  flex: 1;
   border: none;
   height: 35px;
   color: black;
+  padding: 0 10px;
 }
+
 .pam-input-container {
+  // width: 80%;
   border: 1px solid #dedede;
-  margin: 0 32px;
   border-radius: 8px;
   padding: 2px 5px;
   font-size: 16px;
   margin-bottom: 20px;
+  // background: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 20px;
+}
+
+.pam-input-container > span {
+  padding: 0 5px;
 }
 .list-row {
   margin: 0 10px;
